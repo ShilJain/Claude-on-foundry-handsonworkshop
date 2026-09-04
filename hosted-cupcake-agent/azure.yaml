@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+requiredVersions:
+  extensions:
+    azure.ai.agents: '>=1.0.0-beta.4'
+name: cupcake-store-hosted-agent
+services:
+  cupcake-agent:
+    host: azure.ai.agent
+    metadata:
+      tags:
+        - Agent Framework
+        - MCP
+        - Responses Protocol
+    project: src/cupcake-agent
+    language: python
+    codeConfiguration:
+      runtime: python_3_13
+      entryPoint: main.py
+      dependencyResolution: remote_build
+    kind: hosted
+    name: cupcake-agent
+    description: Sparkles answers store questions and manages cupcake orders using remote MCP tools.
+    protocols:
+      - protocol: responses
+        version: 2.0.0
+    environmentVariables:
+      - name: FOUNDRY_MODEL_DEPLOYMENT
+        value: ${FOUNDRY_MODEL_DEPLOYMENT}
+      - name: FOUNDRY_API_KEY
+        value: ${FOUNDRY_API_KEY}
+      - name: FOUNDRY_ENDPOINT
+        value: ${FOUNDRY_ENDPOINT}
+      - name: AZURE_SEARCH_ENDPOINT
+        value: ${AZURE_SEARCH_ENDPOINT}
+      - name: AZURE_SEARCH_API_KEY
+        value: ${AZURE_SEARCH_API_KEY}
+      - name: KNOWLEDGE_BASE_NAME
+        value: ${KNOWLEDGE_BASE_NAME=cupcake-store-kb}
+      - name: CUPCAKE_MCP_URL
+        value: ${CUPCAKE_MCP_URL=https://ca-cupcake-mcp.jollyrock-23017c57.westus2.azurecontainerapps.io/mcp/}
+    container:
+      resources:
+        cpu: '1'
+        memory: 2Gi
+infra:
+  provider: microsoft.foundry
