@@ -1,0 +1,12 @@
+# Claude model deployment in Microsoft Foundry
+FOUNDRY_MODEL_DEPLOYMENT=
+FOUNDRY_API_KEY=
+FOUNDRY_ENDPOINT=
+
+# Foundry IQ knowledge base in Azure AI Search
+AZURE_SEARCH_ENDPOINT=
+AZURE_SEARCH_API_KEY=
+KNOWLEDGE_BASE_NAME=cupcake-store-kb
+
+# Optional override for the Cupcake Store MCP server
+CUPCAKE_MCP_URL=
